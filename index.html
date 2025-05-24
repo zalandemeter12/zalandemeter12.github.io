@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Autonomous Racing Simulation</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        canvas {
+            border: 2px solid #95a5a6;
+            border-radius: 5px;
+            background-color: white;
+            margin-bottom: 20px;
+        }
+        
+        .controls {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 80%;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+        
+        .controls div {
+            margin: 10px 0;
+        }
+        
+        .controls label {
+            display: inline-block;
+            width: 150px;
+            color: #2c3e50;
+        }
+        
+        .controls input[type="range"] {
+            width: 200px;
+            margin: 0 10px;
+        }
+        
+        .controls span {
+            color: #7f8c8d;
+        }
+
+        .button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .reset-button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .reset-button:hover {
+            background-color: #c0392b;
+        }
+
+        .charts-container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            max-width: 800px;
+            gap: 20px;
+        }
+
+        .chart-container {
+            flex: 1;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <div class="controls">
+        <div>
+            <label>Max Speed:</label>
+            <input type="range" min="50" max="400" value="100" step="10">
+            <span id="speedValue">100</span>
+        </div>
+        <div>
+            <label>Cross Track Gain:</label>
+            <input type="range" min="0.1" max="5.0" value="2.0" step="0.1">
+            <span id="crossValue">2.0</span>
+        </div>
+        <div>
+            <label>Heading Gain:</label>
+            <input type="range" min="0.1" max="5.0" value="1.0" step="0.1">
+            <span id="headingValue">1.0</span>
+        </div>
+        <div class="button-container">
+            <button class="reset-button" id="resetButton">Reset Simulation</button>
+        </div>
+    </div>
+    <div class="charts-container">
+        <div class="chart-container">
+            <canvas id="headingChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="crossTrackChart"></canvas>
+        </div>
+    </div>
+    <script src="js/cubic-spline.js"></script>
+    <script src="js/renderer.js"></script>
+    <script src="js/autonomous_racer.js"></script>
+</body>
+</html> 
